@@ -17,44 +17,6 @@ class CallApiTimerScreen extends StatefulWidget {
 }
 
 class NameState extends State<CallApiTimerScreen> {
-  ticketDetailRowLayout() {
-    var objDetailRow;
-    var objDetailBaselineTitle = [];
-    var objDetailBaselineValue = [];
-
-    // //Title
-    // $objDetailBaselineTitle->type = "text";
-    // $objDetailBaselineTitle->text = $title;
-    // $objDetailBaselineTitle->size = "sm";
-    // $objDetailBaselineTitle->color = "#AAAAAA";
-    // $objDetailBaselineTitle->weight = "bold";
-    // $objDetailBaselineTitle->flex = 2;
-    // $objDetailBaselineValue->wrap = true;
-    // $objDetailBaselineTitle->contents = [];
-
-    // //Value
-    // $objDetailBaselineValue->type = "text";
-    // $objDetailBaselineValue->text = $val;
-    // $objDetailBaselineValue->size = "sm";
-    // $objDetailBaselineValue->color = "#666666";
-    // $objDetailBaselineValue->flex = 4;
-    // $objDetailBaselineValue->wrap = true;
-    // $objDetailBaselineValue->align = "end";
-    // $objDetailBaselineValue->contents = [];
-
-    // $contentsList = [$objDetailBaselineTitle, $objDetailBaselineValue];
-
-    // $objDetailRow->type = "box";
-    // $objDetailRow->layout = "baseline";
-    // $objDetailRow->spacing = "sm";
-    // $objDetailRow->contents = $contentsList;
-
-    objDetailRow = jsonEncode({
-      "type": "box",
-    });
-    return objDetailRow;
-  }
-
   pashJson() {
     //     $replyText["type"] = "flex";
     // $replyText["altText"] =  "Ticket Detail";
@@ -87,9 +49,24 @@ class NameState extends State<CallApiTimerScreen> {
         {
           "type": "flex",
           "altText": "Ticket Detail",
-          "contents": [
-
-          ],
+          "contents": {
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Ticket Detail",
+                  "size": "xl",
+                  "weight": "bold",
+                  "color": "#B6961EFF",
+                  "wrap": true,
+                }
+              ],
+            },
+          },
         }
       ],
     });
