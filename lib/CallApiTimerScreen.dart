@@ -17,34 +17,95 @@ class CallApiTimerScreen extends StatefulWidget {
 }
 
 class NameState extends State<CallApiTimerScreen> {
-  pashJson() {
-    //     $replyText["type"] = "flex";
-    // $replyText["altText"] =  "Ticket Detail";
-    // $replyText["contents"]["type"] = "bubble";
-    // $replyText["contents"]["body"]["type"] = "box";
-    // $replyText["contents"]["body"]["layout"] = "vertical";
-    // $replyText["contents"]["body"]["spacing"] = "sm";
-    // $replyText["contents"]["body"]["contents"] = $output;
+  ticketDetailRowLayout(var title, var val) {
+    var objDetailBaselineTitle = {
+      "type": "text",
+      "text": title,
+      "size": "sm",
+      "color": "#AAAAAA",
+      "weight": "bold",
+      "flex": 2,
+      "wrap": true,
+      "contents": [],
+    };
 
-    var replyText = jsonEncode({});
+    var objDetailBaselineValue = {
+      "type": "text",
+      "text": val,
+      "size": "sm",
+      "color": "#666666",
+      "flex": 4,
+      "wrap": true,
+      "align": "end",
+      "contents": [],
+    };
 
-    return replyText;
+    var contentsList = [objDetailBaselineTitle, objDetailBaselineValue];
+
+    var objDetailRow = {
+      "type": "box",
+      "layout": "baseline",
+      "spacing": "sm",
+      "contents": contentsList,
+    };
+
+    return objDetailRow;
+  }
+
+  selectTicketDetail() {
+    var data = [];
+    var title = [
+      "Ticket No.",
+      "Ticket Date",
+      "Order No.",
+      "Order Date",
+      "Ship To",
+      "Product Name",
+      "Plant Name",
+      "Order Qty.",
+      "Ticket Qty.",
+      "Driver Name",
+      "Truck No.",
+      "License Plate",
+      "Leave Time",
+      "Ship Condition",
+      "Ticket Status"
+    ];
+    var arrVal = [
+      "1011808270007",
+      "24/10/2018",
+      "S01P901-00000331",
+      "27/08/2018",
+      "320000106 SH_Name 105",
+      "997525133500 WPROOF PMP 25MPa 25mm S120 25@7DWPC1",
+      "cV101 RMX Plant 101",
+      "78",
+      "2",
+      "Theary Theary_",
+      "FS22",
+      "51E00491",
+      "16:54:43",
+      "Delivery",
+      "5"
+    ];
+
+    for (var i = 0; i < title.length; i++) {
+      data.add(ticketDetailRowLayout(title[i], arrVal[i]));
+    }
+
+    var selectTicketDetailJson = data;
+    return selectTicketDetailJson;
   }
 
   void callApi(var apiType) async {
     var url = "https://api.line.me/v2/bot/message/" + apiType;
-    var accessToken =
+    var accessToken2 =
         "s2l19GfGgdDnsbO9cidJGvlkKDvlT9MRiQla/SKo63c3Us7Tv/xKjLnkLnafX15C3U9N9AT5FiL/ARZHWhicfAqm7bSmB1TJWFAzYkBxgSdZbHVKMag6WdTUtnsb56UmvcwbxVq5WUiRzRfTcLTv9QdB04t89/1O/w1cDnyilFU=";
-
-    var userMulticastJson = jsonEncode({
-      "to": ["Uae4bfcada214d07661bb5a8779ad4fd3"],
-      "messages": [
-        {"type": "text", "text": "Hi ${DateTime.now()}"}
-      ],
-    });
+    var accessToken =
+        "6DOzScAqBRwD/oRPwvMFua/SBvgLtXciCay4cwK10oTPA88R60mjeGdeW8NDL61dCJX2EtyHINFcj1DvY0mboZntH38a/fhTRI3rCaN4vDI/zWBCl0ze5K/AV2JoxoCwR9OZXj2Y7rHn6nABPwZMVwdB04t89/1O/w1cDnyilFU=";
 
     var userPushJson = jsonEncode({
-      "to": "Uae4bfcada214d07661bb5a8779ad4fd3",
+      "to": "Uc1dd5c7730988280c6c7731980655f7a",
       "messages": [
         {
           "type": "flex",
@@ -63,6 +124,32 @@ class NameState extends State<CallApiTimerScreen> {
                   "weight": "bold",
                   "color": "#B6961EFF",
                   "wrap": true,
+                  "contents": [],
+                },
+                {"type": "separator"},
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "spacing": "md",
+                  "margin": "lg",
+                  "contents": [
+                    ticketDetailRowLayout('Ticket No.', '1011808270007'),
+                    ticketDetailRowLayout('Ticket Date', '24/10/2018'),
+                    ticketDetailRowLayout('Order No.', 'S01P901-00000331'),
+                    ticketDetailRowLayout('Order Date', '27/08/2018'),
+                    ticketDetailRowLayout('Ship To', '320000106 SH_Name 105'),
+                    ticketDetailRowLayout('Product Name',
+                        '997525133500 WPROOF PMP 25MPa 25mm S120 25@7DWPC1'),
+                    ticketDetailRowLayout('Plant Name', 'cV101 RMX Plant 101'),
+                    ticketDetailRowLayout('Order Qty.', '78'),
+                    ticketDetailRowLayout('Ticket Qty.', '2'),
+                    ticketDetailRowLayout('Driver Name', 'Theary Theary_'),
+                    ticketDetailRowLayout('Truck No.', 'FS22'),
+                    ticketDetailRowLayout('License Plate', '51E00491'),
+                    ticketDetailRowLayout('Leave Time', '16:54:43'),
+                    ticketDetailRowLayout('Ship Condition', 'Delivery'),
+                    ticketDetailRowLayout('Ticket Status', '5'),
+                  ],
                 }
               ],
             },
@@ -70,7 +157,15 @@ class NameState extends State<CallApiTimerScreen> {
         }
       ],
     });
-
+    var userMulticastJson = jsonEncode({
+      "to": ["Ue415fadc8c8f6f08dda78bff57da7835"],
+      // "Uc1dd5c7730988280c6c7731980655f7a"
+      // "Ue415fadc8c8f6f08dda78bff57da7835"
+      // "Uae4bfcada214d07661bb5a8779ad4fd3",
+      "messages": [
+        {"type": "text", "text": "Hi ${DateTime.now()}"}
+      ],
+    });
     var userJson = apiType == 'push' ? userPushJson : userMulticastJson;
 
     var res = await http.post(
